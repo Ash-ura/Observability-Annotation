@@ -27,7 +27,7 @@ dependencies {
 }
 
 pluginBundle {
-    website = 'https://learn.zohopublic.com/external/manual/observability-documentation?p=71a04abd3028d115fb35e2ef0403aa8ecc70e87607db05995add3eb4a98565cb'
+    website = 'https://github.com/Ash-ura/Observability-Annotation.git'
     vcsUrl = 'https://github.com/Ash-ura/Observability-Annotation.git'
 	tags = ['logging', 'annotation']
 }
