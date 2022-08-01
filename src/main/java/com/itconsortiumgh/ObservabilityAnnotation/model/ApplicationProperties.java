@@ -9,13 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationProperties {
 
-    public  static final String message = "hello observe";
     private String preapproval;
     private String debitRequest;
     private String mandateCreationCallback;
     private String saveToDB;
     private String updateMandateRequest;
 
-     private String success;
-     private String failure;
+
 }
