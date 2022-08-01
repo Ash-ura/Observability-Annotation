@@ -5,48 +5,40 @@ plugins {
     id "com.gradle.plugin-publish" version "1.0.0"
 }
 
+repositories {
+	mavenCentral()
+}
+
 group = 'io.github.Ashura'
 version = '0.0.1'
 sourceCompatibility = '11'
 
-publishing {
-	publications {
-		observability (MavenPublication) {
-			from components.java
-		}
-	}
-
-	allprojects {
-		repositories {
-			mavenCentral()
-		}
-	}
-}
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-aop:2.7.0'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
 pluginBundle {
-    website = 'https://github.com/Ash-ura/Observability-Annotation.git'
-    vcsUrl = 'https://github.com/Ash-ura/Observability-Annotation.git'
+	website = 'https://github.com/Ash-ura/Observability-Annotation.git'
+	vcsUrl = 'https://github.com/Ash-ura/Observability-Annotation.git'
 	tags = ['logging', 'annotation']
 }
 
 gradlePlugin {
-    plugins {
-        observability {
-            id = 'io.github.Ashura.observability'
+	plugins {
+		observability {
+			id = 'io.github.Ashura.observability'
 			displayName = 'Observability Annotation'
 			description = 'The annotation is built to log specific payloads passing through your API in a message format of your choosing, identifying each payload and message with a key from the list of arguments.'
 			implementationClass = 'com.itconsortiumgh.ObservabilityAnnotation.CustomAnnotationApplication'
-        }
-    }
+		}
+	}
 }
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.boot:spring-boot-starter-aop:2.7.0'
+		compileOnly 'org.projectlombok:lombok'
+		developmentOnly 'org.springframework.boot:spring-boot-devtools'
+		annotationProcessor 'org.projectlombok:lombok'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	}
+
 
 tasks.named('test') {
 	useJUnitPlatform()
