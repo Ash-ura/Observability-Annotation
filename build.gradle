@@ -2,8 +2,6 @@ plugins {
 	id 'org.springframework.boot' version '2.7.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id 'maven-publish'
-    id 'java-gradle-plugin'
     id "com.gradle.plugin-publish" version "1.0.0"
 }
 
@@ -11,11 +9,20 @@ group = 'io.github.Ashura'
 version = '0.0.1'
 sourceCompatibility = '11'
 
+publishing {
+	publications {
+		observability (MavenPublication) {
+			from components.java
+		}
+	}
 
-repositories {
-	mavenCentral()
+	repositories {
+		mavenCentral()
+		maven {
+			url "build/libs"
+		}
+	}
 }
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
