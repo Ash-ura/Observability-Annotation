@@ -2,7 +2,9 @@ plugins {
 	id 'org.springframework.boot' version '2.7.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-    id "com.gradle.plugin-publish" version "1.0.0"
+	id 'java-library'
+    id 'maven-publish'
+    id 'signing'
 }
 
 repositories {
@@ -10,23 +12,65 @@ repositories {
 }
 
 group = 'io.github.ash-ura'
-version = '0.0.1'
+version = '1.0'
 sourceCompatibility = '11'
 
-pluginBundle {
-	website = 'https://github.com/Ash-ura/Observability-Annotation.git'
-	vcsUrl = 'https://github.com/Ash-ura/Observability-Annotation.git'
-	tags = ['logging', 'annotation', 'observability', 'annotation']
+java {
+	withJavadocJar()
+	withSourcesJar()
 }
 
-gradlePlugin {
-	plugins {
-		observability {
-			id = 'io.github.ash-ura.observability'
-			displayName = 'Observability Annotation'
-			description = 'The annotation is built to log specific payloads passing through your API in a message format of your choosing, identifying each payload and message with a key from the list of arguments.'
-			implementationClass = 'com.itconsortiumgh.ObservabilityAnnotation.CustomAnnotationApplication'
+publishing {
+	publications {
+		mavenJava(MavenPublication){
+			groupId = 'io.github.ash-ura'
+			artifactId = 'Observability'
+			version = '1.0'
+			from components.java
+
+			pom {
+				name = 'Observability'
+				description = 'The annotation is built to log specific payloads passing through your API in a message format of your choosing, identifying each payload and message with a key from the list of arguments.'
+				url = 'https://github.com/Ash-ura/Observability-Annotation'
+				inceptionYear = '2022'
+
+				developers {
+					developer {
+						id = 'ash-ura'
+						name = 'Adagbe Senam Philip'
+						email = 'adagbesenam@gmail.com'
+					}
+				}
+
+				scm {
+					connection = 'scm:git:git:github.com/Ash-ura/Observability-Annotation.git'
+					developerConnection = 'scm:git:ssh://github.com/Ash-ura/Observability-Annotation.git'
+					url = 'https://github.com/Ash-ura/Observability-Annotation'
+				}
+			}
 		}
+	}
+}
+
+repositories {
+	maven {
+		name = "OSSRH"
+		url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+		credentials {
+			username = project.properties["ossrhUsername"]
+			password = project.properties["ossrhPassword"]
+		}
+	}
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+	if(JavaVersion.current().isJava9Compatible()) {
+		options.addBooleanOption('html5', true)
 	}
 }
 
