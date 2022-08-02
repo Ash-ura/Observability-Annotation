@@ -16,7 +16,7 @@ sourceCompatibility = '11'
 pluginBundle {
 	website = 'https://github.com/Ash-ura/Observability-Annotation.git'
 	vcsUrl = 'https://github.com/Ash-ura/Observability-Annotation.git'
-	tags = ['logging', 'annotation']
+	tags = ['logging', 'annotation', 'observability']
 }
 
 gradlePlugin {
