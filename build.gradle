@@ -9,7 +9,7 @@ repositories {
 	mavenCentral()
 }
 
-group = 'io.github.Ashura'
+group = 'io.github.ash-ura'
 version = '0.0.1'
 sourceCompatibility = '11'
 
@@ -22,7 +22,7 @@ pluginBundle {
 gradlePlugin {
 	plugins {
 		observability {
-			id = 'io.github.Ashura.observability'
+			id = 'io.github.ash-ura.observability'
 			displayName = 'Observability Annotation'
 			description = 'The annotation is built to log specific payloads passing through your API in a message format of your choosing, identifying each payload and message with a key from the list of arguments.'
 			implementationClass = 'com.itconsortiumgh.ObservabilityAnnotation.CustomAnnotationApplication'
